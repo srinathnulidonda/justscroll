@@ -15,7 +15,7 @@
 
 <div align="center">
   
-  **[📥 Download APK](https://github.com/YOUR_USERNAME/manga-app/releases/latest)** • 
+  **[📥 Download APK](https://github.com/srinathnulidonda/manga-app/releases/latest)** • 
   **[🌐 Live Demo](https://manga-app.web.app)** • 
   **[📸 Screenshots](#-screenshots)**
   
@@ -52,7 +52,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/manga-app.git
+git clone https://github.com/srinathnulidonda/manga-app.git
 
 # Navigate to project
 cd manga-app
@@ -84,7 +84,7 @@ flutter run
 <tr>
 <td align="center">
 <h3>📲 Direct Download</h3>
-<a href="https://github.com/YOUR_USERNAME/manga-app/releases/latest">
+<a href="https://github.com/srinathnulidonda/manga-app/releases/latest">
 <img src="https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android" alt="Download APK">
 </a>
 <br><br>
@@ -92,7 +92,7 @@ flutter run
 </td>
 <td align="center">
 <h3>📱 Scan QR Code</h3>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/YOUR_USERNAME/manga-app/releases/latest" alt="QR Code">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://drive.google.com/uc?export=download&id=1ROMiwMhnldXHI2kZCt9bnl9j4ESQlVZD" alt="QR Code">
 </td>
 </tr>
 </table>
@@ -138,7 +138,7 @@ Contributions are welcome! Feel free to:
 
 <div align="center">
   
-MIT License • Copyright (c) 2024 YOUR_NAME
+MIT License • Copyright (c) 2024 Srinath Nulidonda
 
 </div>
 
@@ -150,113 +150,10 @@ MIT License • Copyright (c) 2024 YOUR_NAME
 
 <br>
 
-**Made with ❤️ by [YOUR_NAME](https://github.com/YOUR_USERNAME)**
+**Made with ❤️ by [Srinath Nulidonda](https://github.com/srinathnulidonda)**
 
-[LinkedIn](https://linkedin.com/in/YOUR_LINKEDIN) • 
-[Portfolio](https://your-portfolio.com) • 
-[Email](mailto:your.email@example.com)
-
-</div>
-
----
-
-### Alternative Minimalist Version:
-
-```markdown
-<div align="center">
-  
-# 📚 Manga Reader
-
-### Flutter • Firebase • Android
-
-[![Download APK](https://custom-icon-badges.herokuapp.com/badge/-Download%20APK-blue?style=for-the-badge&logo=download&logoColor=white)](https://github.com/YOUR_USERNAME/manga-app/releases/latest)
-
-<img src="https://via.placeholder.com/600x300/667eea/ffffff?text=Manga+Reader+App" width="100%" />
+[LinkedIn](https://linkedin.com/in/srinathnulidonda) • 
+[Portfolio](https://srinathnulidonda.vercel.app) • 
+[Email](mailto:srinathnulidonda@gmail.com)
 
 </div>
-
-## ✨ What's Inside
-
-```txt
-📖 PDF Reader        ☁️ Cloud Sync       🔐 Authentication
-📚 Library Manager   📱 Material Design  💾 Offline Mode
-```
-
-## 🚀 Get Started
-
-```bash
-git clone https://github.com/YOUR_USERNAME/manga-app.git
-cd manga-app
-flutter run
-```
-
-## 📦 Download
-
-| Platform | Size | Version | Link |
-|----------|------|---------|------|
-| Android  | 65MB | v1.0.0  | [Download APK ↓](https://github.com/YOUR_USERNAME/manga-app/releases/latest) |
-
-## 🛠 Tech Stack
-
-`Flutter` `Dart` `Firebase` `Riverpod` `SQLite`
-
----
-
-<div align="center">
-
-**[GitHub](https://github.com/YOUR_USERNAME)** • **[LinkedIn](https://linkedin.com/in/YOUR_LINKEDIN)** • **[Portfolio](https://your-portfolio.com)**
-
-Made with ❤️ and ☕
-
-</div>
-```
-
-### Ultra-Clean Card Style:
-
-```markdown
-<div align="center">
-  <img width="150" src="https://via.placeholder.com/150x150/667eea/ffffff?text=MR" />
-  
-  # Manga Reader
-  
-  **A modern manga reading app built with Flutter & Firebase**
-  
-  [![](https://img.shields.io/badge/DOWNLOAD%20APK-65MB-success?style=flat-square&logo=android)](https://github.com/YOUR_USERNAME/manga-app/releases)
-  [![](https://img.shields.io/badge/VERSION-1.0.0-blue?style=flat-square)](https://github.com/YOUR_USERNAME/manga-app)
-  [![](https://img.shields.io/badge/LICENSE-MIT-orange?style=flat-square)](LICENSE)
-  
-</div>
-
----
-
-### 🎯 Features
-
-- 📖 **PDF Reader** - Smooth reading experience
-- ☁️ **Cloud Sync** - Access anywhere
-- 🔐 **Auth** - Secure login
-- 📱 **Modern UI** - Material Design
-
-### 💿 Installation
-
-```bash
-# Clone & Run
-git clone https://github.com/YOUR_USERNAME/manga-app
-cd manga-app && flutter run
-```
-
-### 📸 Preview
-
-<div align="center">
-  <img src="https://via.placeholder.com/700x350/f0f0f0/666?text=App+Preview" width="100%" />
-</div>
-
----
-
-<div align="center">
-  
-  **Created by [YOUR_NAME](https://github.com/YOUR_USERNAME)**
-  
-</div>
-```
-
-Choose the style that best fits your portfolio aesthetic. The first one is balanced between simplicity and completeness, while the alternatives offer even more minimalist approaches.

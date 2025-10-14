@@ -1,3 +1,5 @@
+//lib/screens/profile_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,9 +28,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   void _loadProfile() {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      _profileFuture = Future(() => _firebaseService.getUserProfile(user.uid));
+      _profileFuture = _firebaseService.getUserProfile(user.uid);
     } else {
-      _profileFuture = Future.value(null); // Handle no user case
+      _profileFuture = Future.value(null);
     }
   }
 
@@ -46,15 +48,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             actions: [
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () async {
                   Navigator.of(context).pop();
-
                   final user = FirebaseAuth.instance.currentUser;
                   if (user != null) {
                     final profile = await _firebaseService.getUserProfile(
@@ -69,14 +68,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         favorites: profile.favorites,
                         lastReadChapter: profile.lastReadChapter,
                       );
-
                       await _firebaseService.updateUserProfile(updatedProfile);
-
-                      if (mounted) {
-                        setState(() {
-                          _loadProfile();
-                        });
-                      }
+                      if (mounted) setState(() => _loadProfile());
                     }
                   }
                 },
@@ -98,15 +91,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-
-          if (snapshot.hasError) {
+          if (snapshot.hasError)
             return Center(child: Text('Error: ${snapshot.error}'));
-          }
-
           final profile = snapshot.data;
-          if (profile == null) {
+          if (profile == null)
             return const Center(child: Text('Profile not found'));
-          }
 
           final user = FirebaseAuth.instance.currentUser;
           final email = user?.email ?? profile.email;
@@ -116,9 +105,32 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                const CircleAvatar(
-                  radius: 60,
-                  child: Icon(Icons.person, size: 60),
+                GestureDetector(
+                  onTap: () {
+                    // TODO: Implement image upload with Firebase Storage
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Image upload coming soon!'),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.blueAccent,
+                    child:
+                        profile.profileImageUrl.isEmpty
+                            ? const Icon(
+                              Icons.person,
+                              size: 60,
+                              color: Colors.white,
+                            )
+                            : ClipOval(
+                              child: Image.network(
+                                profile.profileImageUrl,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -163,35 +175,41 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     ),
                   ),
                 const SizedBox(height: 32),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Favorites'),
-                  trailing: Text('${profile.favorites.length}'),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: const Text('Favorites'),
+                    trailing: Text('${profile.favorites.length}'),
+                  ),
                 ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.history),
-                  title: const Text('Reading History'),
-                  trailing: Text('${profile.lastReadChapter.length}'),
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.history),
+                    title: const Text('Reading History'),
+                    trailing: Text('${profile.lastReadChapter.length}'),
+                  ),
                 ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Settings'),
-                  onTap: () {
-                    // Navigate to settings screen
-                  },
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
+                    onTap: () {
+                      // TODO: Navigate to settings screen
+                    },
+                  ),
                 ),
-                const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.help_outline),
-                  title: const Text('Help & Support'),
-                  onTap: () {
-                    // Navigate to help screen
-                  },
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.help_outline),
+                    title: const Text('Help & Support'),
+                    onTap: () {
+                      // TODO: Navigate to help screen
+                    },
+                  ),
                 ),
-                const Divider(),
               ],
             ),
           );

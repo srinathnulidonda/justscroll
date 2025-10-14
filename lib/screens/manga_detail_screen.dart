@@ -1,4 +1,5 @@
-// lib/screens/manga_detail_screen.dart
+//lib/screens/manga_detail_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manga_app/models/manga.dart';
@@ -36,9 +37,9 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
     final userProfile = await _firebaseService.getUserProfile(user.uid);
     if (userProfile == null) return;
 
-    setState(() {
-      _isFavorite = userProfile.favorites.contains(widget.manga.id);
-    });
+    setState(
+      () => _isFavorite = userProfile.favorites.contains(widget.manga.id),
+    );
   }
 
   Future<void> _toggleFavorite() async {
@@ -46,10 +47,7 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
     if (user == null) return;
 
     await _firebaseService.toggleFavorite(user.uid, widget.manga.id);
-
-    setState(() {
-      _isFavorite = !_isFavorite;
-    });
+    setState(() => _isFavorite = !_isFavorite);
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -72,25 +70,49 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
             expandedHeight: 300,
             pinned: true,
             actions: [
-              IconButton(
-                icon: Icon(
-                  _isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: _isFavorite ? Colors.red : null,
+              AnimatedScale(
+                scale: _isFavorite ? 1.2 : 1.0,
+                duration: const Duration(milliseconds: 200),
+                child: IconButton(
+                  icon: Icon(
+                    _isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: _isFavorite ? Colors.red : null,
+                  ),
+                  onPressed: _toggleFavorite,
                 ),
-                onPressed: _toggleFavorite,
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: CachedNetworkImage(
-                imageUrl: widget.manga.coverUrl,
-                fit: BoxFit.cover,
-                placeholder:
-                    (context, url) => Container(color: Colors.grey[300]),
-                errorWidget:
-                    (context, url, error) => Container(
-                      color: Colors.grey[300],
-                      child: const Icon(Icons.error),
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: widget.manga.coverUrl,
+                    fit: BoxFit.cover,
+                    placeholder:
+                        (context, url) => Container(color: Colors.grey[300]),
+                    errorWidget:
+                        (context, url, error) => Container(
+                          color: Colors.grey[300],
+                          child: const Icon(Icons.error),
+                        ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 80,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Colors.black54],
+                        ),
+                      ),
                     ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -125,9 +147,9 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
                             .map(
                               (genre) => Chip(
                                 label: Text(genre),
-                                backgroundColor: Theme.of(
-                                  context,
-                                ).colorScheme.primary.withOpacity(0.2),
+                                backgroundColor: Colors.blueAccent.withOpacity(
+                                  0.2,
+                                ),
                               ),
                             )
                             .toList(),
@@ -163,36 +185,40 @@ class _MangaDetailScreenState extends State<MangaDetailScreen> {
                   child: Center(child: CircularProgressIndicator()),
                 );
               }
-
               if (snapshot.hasError) {
                 return SliverFillRemaining(
                   child: Center(child: Text('Error: ${snapshot.error}')),
                 );
               }
-
               final chapters = snapshot.data ?? [];
-
               if (chapters.isEmpty) {
                 return const SliverFillRemaining(
                   child: Center(child: Text('No chapters available')),
                 );
               }
-
               return SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final chapter = chapters[index];
-                  return ListTile(
-                    title: Text('Chapter ${chapter.number}: ${chapter.title}'),
-                    subtitle: Text(
-                      'Released: ${DateFormat.yMMMd().format(chapter.releaseDate)}',
+                  return Card(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 4,
                     ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => ReaderScreen(chapter: chapter),
-                        ),
-                      );
-                    },
+                    child: ListTile(
+                      title: Text(
+                        'Chapter ${chapter.number}: ${chapter.title}',
+                      ),
+                      subtitle: Text(
+                        'Released: ${DateFormat.yMMMd().format(chapter.releaseDate)}',
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ReaderScreen(chapter: chapter),
+                          ),
+                        );
+                      },
+                    ),
                   );
                 }, childCount: chapters.length),
               );

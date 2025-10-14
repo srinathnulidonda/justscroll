@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_app_check/firebase_app_check.dart'; // Added for App Check
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
@@ -15,7 +15,7 @@ void main() async {
         AndroidProvider.debug, // Use 'playIntegrity' for production
   );
 
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -30,24 +30,50 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.blueAccent,
+          primary: Colors.blueAccent,
+          secondary: Colors.redAccent,
           brightness: Brightness.light,
         ),
-        textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
+        scaffoldBackgroundColor: Colors.grey[100],
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         useMaterial3: true,
+        cardTheme: CardThemeData(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          elevation: 4,
+          shadowColor: Colors.black26,
+        ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.blueAccent,
+          primary: Colors.blueAccent,
+          secondary: Colors.redAccent,
           brightness: Brightness.dark,
         ),
-        textTheme: GoogleFonts.nunitoTextTheme(
+        scaffoldBackgroundColor: Colors.grey[900],
+        textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme.apply(
             bodyColor: Colors.white,
             displayColor: Colors.white,
           ),
         ),
         useMaterial3: true,
+        cardTheme: CardThemeData(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          elevation: 4,
+          shadowColor: Colors.black26,
+        ),
       ),
       themeMode: themeProvider.themeMode,
       home: const SplashScreen(),

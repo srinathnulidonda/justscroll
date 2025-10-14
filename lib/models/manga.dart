@@ -1,3 +1,4 @@
+// In your manga.dart model file
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Manga {
@@ -7,7 +8,7 @@ class Manga {
   final String coverUrl;
   final List<String> genres;
   final String author;
-  final DateTime lastUpdated;
+  final DateTime lastUpdated; // Keep as DateTime for Dart usage
   final bool isCompleted;
 
   Manga({
@@ -21,25 +22,6 @@ class Manga {
     required this.isCompleted,
   });
 
-  factory Manga.fromMap(Map<String, dynamic> map, String id) {
-    assert(map['title'] != null, 'Title is required');
-    assert(map['coverUrl'] != null, 'Cover URL is required');
-
-    return Manga(
-      id: id,
-      title: map['title'] as String,
-      description: map['description'] as String? ?? '',
-      coverUrl: map['coverUrl'] as String,
-      genres: List<String>.from(map['genres'] ?? []),
-      author: map['author'] as String? ?? 'Unknown',
-      lastUpdated:
-          map['lastUpdated'] != null
-              ? (map['lastUpdated'] as Timestamp).toDate()
-              : DateTime.now(),
-      isCompleted: map['isCompleted'] as bool? ?? false,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'title': title,
@@ -47,8 +29,25 @@ class Manga {
       'coverUrl': coverUrl,
       'genres': genres,
       'author': author,
-      'lastUpdated': lastUpdated,
+      'lastUpdated': Timestamp.fromDate(
+        lastUpdated,
+      ), // Convert to Firestore Timestamp here
       'isCompleted': isCompleted,
     };
+  }
+
+  factory Manga.fromMap(Map<String, dynamic> map, String docId) {
+    return Manga(
+      id: docId,
+      title: map['title'] ?? '',
+      description: map['description'] ?? '',
+      coverUrl: map['coverUrl'] ?? '',
+      genres: List<String>.from(map['genres'] ?? []),
+      author: map['author'] ?? '',
+      lastUpdated:
+          (map['lastUpdated'] as Timestamp)
+              .toDate(), // Convert back to DateTime
+      isCompleted: map['isCompleted'] ?? false,
+    );
   }
 }

@@ -1,4 +1,5 @@
-// lib/screens/favorites_screen.dart
+//lib/screens/favorites_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manga_app/models/manga.dart';
@@ -27,12 +28,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     final List<Manga> favorites = [];
     for (final mangaId in userProfile.favorites) {
       final manga = await _firebaseService.getMangaById(mangaId);
-      if (manga != null) {
-        favorites.add(manga);
-      }
+      if (manga != null) favorites.add(manga);
     }
-
     return favorites;
+  }
+
+  Future<void> _removeFavorite(String mangaId) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await _firebaseService.toggleFavorite(user.uid, mangaId);
+      setState(() {});
+    }
   }
 
   Widget _buildLoadingShimmer() {
@@ -48,14 +54,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           mainAxisSpacing: 16,
         ),
         itemCount: 6,
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+        itemBuilder:
+            (context, index) => Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
-          );
-        },
       ),
     );
   }
@@ -96,6 +101,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     'Add manga to your favorites',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed:
+                        () => Navigator.pushNamed(context, '/manga_list'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Browse Manga'),
+                  ),
                 ],
               ),
             );
@@ -112,19 +127,29 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             itemCount: favorites.length,
             itemBuilder: (context, index) {
               final manga = favorites[index];
-              return MangaGridItem(
-                manga: manga,
-                onTap: () {
-                  Navigator.of(context)
-                      .push(
-                        MaterialPageRoute(
-                          builder: (_) => MangaDetailScreen(manga: manga),
-                        ),
-                      )
-                      .then((_) {
-                        setState(() {});
-                      });
-                },
+              return Stack(
+                children: [
+                  MangaGridItem(
+                    manga: manga,
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(
+                            MaterialPageRoute(
+                              builder: (_) => MangaDetailScreen(manga: manga),
+                            ),
+                          )
+                          .then((_) => setState(() {}));
+                    },
+                  ),
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: IconButton(
+                      icon: const Icon(Icons.remove_circle, color: Colors.red),
+                      onPressed: () => _removeFavorite(manga.id),
+                    ),
+                  ),
+                ],
               );
             },
           );

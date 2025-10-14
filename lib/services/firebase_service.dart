@@ -1,3 +1,4 @@
+// lib/services/firebase_service.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manga_app/models/manga.dart';
@@ -8,7 +9,7 @@ class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Authentication methods
+  // Authentication methods (unchanged)
   Future<UserCredential> signIn(String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
@@ -63,7 +64,7 @@ class FirebaseService {
     }
   }
 
-  // User profile methods
+  // User profile methods (unchanged)
   Future<void> createUserProfile(UserProfile profile) async {
     try {
       await _firestore
@@ -143,6 +144,24 @@ class FirebaseService {
     }
   }
 
+  Future<DocumentReference> addManga(Manga manga) async {
+    try {
+      return await _firestore.collection('mangas').add(manga.toMap());
+    } catch (e) {
+      throw 'Failed to add manga: $e';
+    }
+  }
+
+  Future<void> deleteManga(String mangaId) async {
+    try {
+      await _firestore.collection('mangas').doc(mangaId).delete();
+      // Optionally delete associated chapters
+      await deleteChaptersByMangaId(mangaId);
+    } catch (e) {
+      throw 'Failed to delete manga: $e';
+    }
+  }
+
   // Chapter methods
   Future<List<Chapter>> getChaptersByMangaId(String mangaId) async {
     try {
@@ -176,7 +195,30 @@ class FirebaseService {
     }
   }
 
-  // Favorites methods
+  Future<void> addChapter(Chapter chapter) async {
+    try {
+      await _firestore.collection('chapters').add(chapter.toMap());
+    } catch (e) {
+      throw 'Failed to add chapter: $e';
+    }
+  }
+
+  Future<void> deleteChaptersByMangaId(String mangaId) async {
+    try {
+      QuerySnapshot snapshot =
+          await _firestore
+              .collection('chapters')
+              .where('mangaId', isEqualTo: mangaId)
+              .get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+    } catch (e) {
+      throw 'Failed to delete chapters: $e';
+    }
+  }
+
+  // Favorites methods (unchanged)
   Future<void> toggleFavorite(String uid, String mangaId) async {
     try {
       DocumentSnapshot userDoc =

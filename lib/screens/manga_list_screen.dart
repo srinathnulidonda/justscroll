@@ -40,9 +40,9 @@ class _MangaListScreenState extends State<MangaListScreen> {
   void _updateMangaFuture() {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      setState(() {
-        _mangaFuture = Future.error('Please log in to view manga.');
-      });
+      setState(
+        () => _mangaFuture = Future.error('Please log in to view manga.'),
+      );
       return;
     }
 
@@ -89,9 +89,7 @@ class _MangaListScreenState extends State<MangaListScreen> {
     });
   }
 
-  Future<void> _refreshManga() async {
-    _updateMangaFuture();
-  }
+  Future<void> _refreshManga() async => _updateMangaFuture();
 
   Widget _buildLoadingShimmer() {
     return Shimmer.fromColors(
@@ -106,14 +104,13 @@ class _MangaListScreenState extends State<MangaListScreen> {
           mainAxisSpacing: 16,
         ),
         itemCount: 10,
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+        itemBuilder:
+            (context, index) => Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
-          );
-        },
       ),
     );
   }
@@ -129,12 +126,23 @@ class _MangaListScreenState extends State<MangaListScreen> {
               decoration: InputDecoration(
                 hintText: 'Search manga...',
                 prefixIcon: const Icon(Icons.search),
+                suffixIcon:
+                    _searchQuery.isNotEmpty
+                        ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () => _searchManga(''),
+                        )
+                        : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
                 contentPadding: EdgeInsets.zero,
               ),
-              onChanged: _searchManga,
+              onChanged:
+                  (value) => Future.delayed(
+                    const Duration(milliseconds: 300),
+                    () => _searchManga(value),
+                  ),
             ),
           ),
           SizedBox(
@@ -146,17 +154,18 @@ class _MangaListScreenState extends State<MangaListScreen> {
               itemBuilder: (context, index) {
                 final genre = _genres[index];
                 final isSelected = _selectedGenre == genre;
-
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: FilterChip(
-                    label: Text(genre),
-                    selected: isSelected,
-                    onSelected: (_) => _filterByGenre(genre),
-                    selectedColor: Theme.of(
-                      context,
-                    ).colorScheme.primary.withOpacity(0.3),
-                    checkmarkColor: Theme.of(context).colorScheme.primary,
+                  child: AnimatedScale(
+                    scale: isSelected ? 1.1 : 1.0,
+                    duration: const Duration(milliseconds: 200),
+                    child: FilterChip(
+                      label: Text(genre),
+                      selected: isSelected,
+                      onSelected: (_) => _filterByGenre(genre),
+                      selectedColor: Colors.blueAccent.withOpacity(0.3),
+                      checkmarkColor: Colors.blueAccent,
+                    ),
                   ),
                 );
               },
@@ -193,10 +202,8 @@ class _MangaListScreenState extends State<MangaListScreen> {
                   }
 
                   final mangas = snapshot.data ?? [];
-
-                  if (mangas.isEmpty) {
+                  if (mangas.isEmpty)
                     return const Center(child: Text('No manga found'));
-                  }
 
                   return GridView.builder(
                     padding: const EdgeInsets.all(16),
@@ -212,13 +219,12 @@ class _MangaListScreenState extends State<MangaListScreen> {
                       final manga = mangas[index];
                       return MangaGridItem(
                         manga: manga,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => MangaDetailScreen(manga: manga),
+                        onTap:
+                            () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => MangaDetailScreen(manga: manga),
+                              ),
                             ),
-                          );
-                        },
                       );
                     },
                   );

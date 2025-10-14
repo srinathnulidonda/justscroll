@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId = "com.sn.mangareader"
-        minSdk = 23 // Updated minSdkVersion
+        minSdk = flutter.minSdkVersion // Updated minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

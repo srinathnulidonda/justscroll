@@ -91,13 +91,14 @@ flutter run
 <b>v1.0.0 • 65 MB</b>
 </td>
 <td align="center">
-<h3>📱 Scan QR Code</h3>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://drive.google.com/uc?export=download&id=1ROMiwMhnldXHI2kZCt9bnl9j4ESQlVZD" alt="QR Code">
-</td>
-</tr>
+  <h3>📱 Scan QR Code</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ROMiwMhnldXHI2kZCt9bnl9j4ESQlVZD" 
+       alt="QR Code for file download" 
+       width="150" 
+       height="150">
+</td></tr>
 </table>
 </div>
-
 ## 💻 Development
 
 <details>

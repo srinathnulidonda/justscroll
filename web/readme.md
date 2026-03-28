@@ -41,31 +41,31 @@ Discover, read, and track your favorite manga, manhwa & comics — beautifully.
 <table>
 <tr>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-home.png" alt="Home Page" />
-<p align="center"><strong>Home</strong> — Genre toolbar with Popular & Latest sections</p>
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-home.png" alt="Home Page" />
+<p align="center"><strong>Home</strong> — Popular & Latest with genre filters</p>
 </td>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-discover.png" alt="Discover Page" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-discover.png" alt="Discover Page" />
 <p align="center"><strong>Discover</strong> — Tabbed browsing with pagination</p>
 </td>
 </tr>
 <tr>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-detail.png" alt="Manga Detail" />
-<p align="center"><strong>Manga Detail</strong> — Hero, stats, chapters & characters</p>
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-detail.png" alt="Manga Detail" />
+<p align="center"><strong>Manga Detail</strong> — Stats, chapters & characters</p>
 </td>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-reader.png" alt="Chapter Reader" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-reader.png" alt="Chapter Reader" />
 <p align="center"><strong>Reader</strong> — Fullscreen with settings panel</p>
 </td>
 </tr>
 <tr>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-profile.png" alt="Profile Page" />
-<p align="center"><strong>Profile</strong> — Dashboard with settings & stats</p>
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-profile.png" alt="Profile Page" />
+<p align="center"><strong>Profile</strong> — Dashboard with stats & settings</p>
 </td>
 <td width="50%">
-<img src="./src/assets/screenshots/desktop-search.png" alt="Search Page" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/desktop-search.png" alt="Search Page" />
 <p align="center"><strong>Search</strong> — Full-text search with results grid</p>
 </td>
 </tr>
@@ -73,22 +73,24 @@ Discover, read, and track your favorite manga, manhwa & comics — beautifully.
 
 ### Mobile
 
+### Mobile
+
 <table>
 <tr>
 <td width="25%">
-<img src="/mobile/assets/screenshots/mobile-home.png" alt="Home" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/mobile-home.png" alt="Mobile Home" />
 <p align="center"><strong>Home</strong></p>
 </td>
 <td width="25%">
-<img src="/mobile/assets/screenshots/mobile-detail.png" alt="Detail" />
-<p align="center"><strong>Manga Detail</strong></p>
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/mobile-detail.png" alt="Mobile Detail" />
+<p align="center"><strong>Detail</strong></p>
 </td>
 <td width="25%">
-<img src="/mobile/assets/screenshots/mobile-reader.png" alt="Reader" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/mobile-reader.png" alt="Mobile Reader" />
 <p align="center"><strong>Reader</strong></p>
 </td>
 <td width="25%">
-<img src="/mobile/assets/screenshots/mobile-profile.png" alt="Profile" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/mobile-profile.png" alt="Mobile Profile" />
 <p align="center"><strong>Profile</strong></p>
 </td>
 </tr>
@@ -99,11 +101,11 @@ Discover, read, and track your favorite manga, manhwa & comics — beautifully.
 <table>
 <tr>
 <td width="50%">
-<img src="./src/assets/screenshots/theme-dark.png" alt="Dark Theme" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/theme-dark.png" alt="Dark Theme" />
 <p align="center"><strong>Dark Mode</strong></p>
 </td>
 <td width="50%">
-<img src="./src/assets/screenshots/theme-light.png" alt="Light Theme" />
+<img src="https://raw.githubusercontent.com/srinathnulidonda/justscroll/main/web/src/assets/screenshots/theme-light.png" alt="Light Theme" />
 <p align="center"><strong>Light Mode</strong></p>
 </td>
 </tr>
@@ -341,7 +343,7 @@ All API calls go through `src/lib/api.js`:
 | `POST` | `/api/v1/user/history` | ✓ | Update progress |
 | `GET` | `/api/v1/proxy/image?url=` | — | Proxy image |
 
-See [`backend/README.md`](../backend/README.md) for full API documentation.
+See [`backend/readme.md`](../backend/readme.md) for full API documentation.
 
 <br />
 
@@ -417,7 +419,7 @@ Content is aggregated from third-party APIs. JustScroll does not host any manga 
 ---
 <div align="center">
 
-**Part of the [JustScroll](../README.md) platform**
+**Part of the [JustScroll](../readme.md) platform**
 
 Made with React, Tailwind & lots of manga.
 

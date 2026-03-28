@@ -640,7 +640,7 @@ All content is fetched in real-time from third-party APIs via the JustScroll bac
 ---
 <div align="center">
 
-**Part of the [JustScroll](../README.md) platform**
+**Part of the [JustScroll](../readme.md) platform**
 
 Built with Flutter, Riverpod & Dart.
 

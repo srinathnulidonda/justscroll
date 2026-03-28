@@ -495,7 +495,7 @@ Content is aggregated from third-party APIs. JustScroll does not host any manga/
 ---
 <div align="center">
 
-**Part of the [JustScroll](../README.md) platform**
+**Part of the [JustScroll](../readme.md) platform**
 
 Built with FastAPI, PostgreSQL & async Python.
 </div>

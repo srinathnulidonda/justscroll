@@ -29,6 +29,14 @@ def setup_logging() -> None:
     )
 
 
+async def create_tables() -> None:
+    """Create database tables if they don't exist."""
+    from app.models import Base
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    logger.info("Database tables created/verified")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
@@ -41,6 +49,7 @@ async def lifespan(app: FastAPI):
         follow_redirects=True,
     )
     await redis_manager.connect()
+    await create_tables()  # <-- ADD THIS LINE
     logger.info("Application started successfully")
     yield
     await app.state.http_client.aclose()

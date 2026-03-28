@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+pydantic-settings
+pydantic[email]
+PyJWT
+bcrypt
+httpx
+redis[hiredis]
+slowapi
+loguru
+alembic
+psycopg2-binary

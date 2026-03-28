@@ -1,0 +1,27 @@
+.env
+
+# Android signing
+android/key.properties
+android/app/upload-keystore.jks
+*.jks
+*.keystore
+
+# Flutter
+.dart_tool/
+.packages
+build/
+*.iml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# macOS
+.DS_Store
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec

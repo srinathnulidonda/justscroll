@@ -1,7 +1,7 @@
-// frontend/src/pages/Privacy.jsx
+// frontend/src/pages/Terms.jsx
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Shield, ChevronRight } from "lucide-react";
+import { ArrowLeft, FileText, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -10,166 +10,178 @@ const EFFECTIVE_DATE = "June 15, 2025";
 
 const sections = [
     {
-        id: "information-we-collect",
+        id: "acceptance",
         number: "1",
-        title: "Information We Collect",
+        title: "Acceptance of Terms",
         content: [
             {
-                subtitle: "Account Information",
-                text: "When you create an account, we collect your username, email address, and a securely hashed password. We never store your password in plain text.",
+                text: 'By accessing or using JustScroll ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, you must not use the Service.',
             },
             {
-                subtitle: "Reading Data",
-                text: "We collect information about your reading activity, including bookmarked manga, reading history, chapter progress, and page position. This data is used solely to provide you with a seamless reading experience across devices.",
-            },
-            {
-                subtitle: "Automatically Collected Information",
-                text: "When you use JustScroll, we may automatically collect certain technical information, including your IP address, browser type, device information, operating system, and general usage patterns. This information helps us maintain and improve the service.",
-            },
-            {
-                subtitle: "Local Storage Data",
-                text: "We use your browser's local storage to save your preferences such as theme (light/dark mode), reader settings (image quality, reading mode, page direction), and authentication tokens for session management.",
+                text: "We reserve the right to modify these terms at any time. Continued use of the Service after changes constitutes acceptance of the updated terms.",
             },
         ],
     },
     {
-        id: "how-we-use",
+        id: "description",
         number: "2",
-        title: "How We Use Your Information",
+        title: "Description of Service",
         content: [
             {
-                text: "We use the information we collect for the following purposes:",
+                text: "JustScroll is a manga reading platform that aggregates content from third-party sources including MangaDex, Jikan (MyAnimeList), and ComicVine. We provide a unified interface for discovering, reading, and tracking manga, manhwa, and comics.",
             },
             {
-                list: [
-                    "To create and manage your account",
-                    "To save and sync your bookmarks and reading progress",
-                    "To personalize your reading experience and preferences",
-                    "To authenticate your sessions and maintain security",
-                    "To improve, maintain, and optimize our service",
-                    "To communicate with you about service-related matters",
-                    "To detect, prevent, and address technical issues or abuse",
-                ],
+                text: "JustScroll does not host manga content directly. All manga pages and cover images are fetched from their respective third-party sources via API integrations and image proxying.",
             },
         ],
     },
     {
-        id: "data-sharing",
+        id: "accounts",
         number: "3",
-        title: "Data Sharing & Third Parties",
+        title: "User Accounts",
         content: [
             {
-                text: "JustScroll does not sell, trade, or rent your personal information to third parties. We may share data only in the following circumstances:",
+                subtitle: "Registration",
+                text: "To access certain features such as bookmarks, reading history, and profile settings, you must create an account. You agree to provide accurate and complete information during registration.",
             },
             {
-                list: [
-                    "With third-party APIs (MangaDex, Jikan, ComicVine) to fetch manga content — only non-personal request data is shared",
-                    "When required by law, regulation, or legal process",
-                    "To protect the rights, safety, or property of JustScroll, our users, or the public",
-                    "With your explicit consent",
-                ],
+                subtitle: "Account Security",
+                text: "You are responsible for maintaining the confidentiality of your account credentials. You agree to notify us immediately of any unauthorized use of your account. JustScroll is not liable for any losses resulting from unauthorized access to your account.",
+            },
+            {
+                subtitle: "Account Termination",
+                text: "We reserve the right to suspend or terminate accounts that violate these terms, engage in abusive behavior, or are inactive for extended periods. You may also delete your account at any time.",
             },
         ],
     },
     {
-        id: "data-security",
+        id: "acceptable-use",
         number: "4",
-        title: "Data Security",
+        title: "Acceptable Use",
         content: [
-            {
-                text: "We implement industry-standard security measures to protect your personal information, including:",
-            },
+            { text: "When using JustScroll, you agree not to:" },
             {
                 list: [
-                    "Secure password hashing using bcrypt",
-                    "JWT-based authentication with access and refresh tokens",
-                    "HTTPS encryption for all data in transit",
-                    "Regular security audits and updates",
+                    "Use the Service for any unlawful purpose or in violation of any applicable laws",
+                    "Attempt to gain unauthorized access to any part of the Service, other accounts, or related systems",
+                    "Interfere with or disrupt the Service, servers, or networks connected to the Service",
+                    "Use automated tools, bots, or scrapers to access or collect data from the Service without permission",
+                    "Reproduce, distribute, or create derivative works from the Service without authorization",
+                    "Upload, transmit, or distribute any malicious code, viruses, or harmful content",
+                    "Impersonate any person or entity, or falsely represent your affiliation with any person or entity",
+                    "Harass, abuse, or harm other users of the Service",
+                    "Circumvent or attempt to circumvent any security features of the Service",
                 ],
-            },
-            {
-                text: "While we strive to protect your data, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security.",
             },
         ],
     },
     {
-        id: "data-retention",
+        id: "intellectual-property",
         number: "5",
-        title: "Data Retention",
+        title: "Intellectual Property",
         content: [
             {
-                text: "We retain your personal information for as long as your account is active or as needed to provide you with our services. If you delete your account, we will delete or anonymize your personal data within 30 days, except where we are required to retain it by law.",
+                subtitle: "Our Content",
+                text: "The JustScroll platform, including its design, code, branding, and original content, is the intellectual property of JustScroll. You may not copy, modify, or distribute our platform without written permission.",
             },
             {
-                text: "Reading history and bookmark data are retained for the lifetime of your account to ensure a continuous experience.",
+                subtitle: "Third-Party Content",
+                text: "All manga, manhwa, and comic content displayed on JustScroll belongs to their respective creators, publishers, and rights holders. JustScroll acts as an aggregator and does not claim ownership of any third-party content. If you are a rights holder and believe your content is being displayed improperly, please contact us.",
             },
         ],
     },
     {
-        id: "your-rights",
+        id: "content-disclaimer",
         number: "6",
-        title: "Your Rights",
+        title: "Content Disclaimer",
         content: [
             {
-                text: "Depending on your jurisdiction, you may have the following rights regarding your personal data:",
+                text: "JustScroll aggregates content from third-party sources and does not control or guarantee the accuracy, completeness, or availability of such content. Manga content may include material rated for different audiences. Users are responsible for ensuring that the content they access is appropriate for them.",
+            },
+            {
+                text: "We display content ratings where available but cannot guarantee that all content is accurately rated by its source.",
+            },
+        ],
+    },
+    {
+        id: "availability",
+        number: "7",
+        title: "Service Availability",
+        content: [
+            {
+                text: "We strive to keep JustScroll available 24/7, but we do not guarantee uninterrupted access. The Service may be temporarily unavailable due to:",
             },
             {
                 list: [
-                    "Access — Request a copy of the personal data we hold about you",
-                    "Correction — Request correction of inaccurate or incomplete data",
-                    "Deletion — Request deletion of your personal data and account",
-                    "Portability — Request your data in a structured, machine-readable format",
-                    "Objection — Object to certain processing of your personal data",
-                    "Withdrawal — Withdraw consent at any time where processing is based on consent",
+                    "Scheduled maintenance and updates",
+                    "Third-party API outages or rate limiting (MangaDex, Jikan, ComicVine)",
+                    "Server issues or technical difficulties",
+                    "Force majeure events beyond our control",
                 ],
             },
             {
-                text: 'To exercise any of these rights, please contact us at the email provided in the "Contact" section below.',
+                text: "We are not liable for any damages resulting from service interruptions.",
             },
         ],
     },
     {
-        id: "childrens-privacy",
-        number: "7",
-        title: "Children's Privacy",
-        content: [
-            {
-                text: "JustScroll is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we discover that we have collected data from a child under 13, we will delete it promptly. If you believe a child under 13 has provided us with personal data, please contact us immediately.",
-            },
-        ],
-    },
-    {
-        id: "image-proxying",
+        id: "liability",
         number: "8",
-        title: "Image Proxying",
+        title: "Limitation of Liability",
         content: [
             {
-                text: "JustScroll uses a server-side image proxy to serve manga cover art and chapter pages. This proxy fetches images from third-party sources (such as MangaDex CDN) on your behalf. Your IP address is not exposed to these third-party image servers; instead, our server makes the request. The proxied images are not stored permanently on our servers.",
+                text: 'JustScroll is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied. To the fullest extent permitted by law:',
+            },
+            {
+                list: [
+                    "We disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement",
+                    "We are not liable for any indirect, incidental, special, consequential, or punitive damages",
+                    "Our total liability for any claims related to the Service shall not exceed the amount you paid us (if any) in the 12 months preceding the claim",
+                    "We are not responsible for the content, accuracy, or practices of third-party sources",
+                ],
             },
         ],
     },
     {
-        id: "policy-changes",
+        id: "dmca",
         number: "9",
-        title: "Changes to This Policy",
+        title: "DMCA & Copyright",
         content: [
             {
-                text: 'We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. We will notify you of any material changes by posting the updated policy on this page and updating the "Last Updated" date. Your continued use of JustScroll after any changes constitutes acceptance of the updated policy.',
+                text: "JustScroll respects the intellectual property rights of others. If you believe that content accessible through our Service infringes your copyright, please send a DMCA takedown notice to our designated agent with the following information:",
+            },
+            {
+                list: [
+                    "A description of the copyrighted work you claim has been infringed",
+                    "The URL or location of the infringing content on our Service",
+                    "Your contact information (name, email, phone number)",
+                    "A statement that you have a good faith belief that the use is not authorized",
+                    "A statement, under penalty of perjury, that the information is accurate and you are authorized to act on behalf of the copyright owner",
+                    "Your physical or electronic signature",
+                ],
+            },
+            { text: "Send DMCA notices to: srinathnulidonda.dev@gmail.com" },
+        ],
+    },
+    {
+        id: "governing-law",
+        number: "10",
+        title: "Governing Law",
+        content: [
+            {
+                text: "These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions. Any disputes arising from these terms or your use of the Service shall be resolved through good-faith negotiation, and if necessary, binding arbitration.",
             },
         ],
     },
     {
         id: "contact",
-        number: "10",
-        title: "Contact Us",
+        number: "11",
+        title: "Contact",
         content: [
             {
-                text: "If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at:",
+                text: "For questions or concerns about these Terms of Service, please contact us at:",
             },
             { text: "Email: srinathnulidonda.dev@gmail.com" },
-            {
-                text: "We aim to respond to all inquiries within 48 hours.",
-            },
         ],
     },
 ];
@@ -219,9 +231,7 @@ function MobileSection({ section }) {
                     {block.list && (
                         <ul className="list-disc list-inside space-y-1.5 text-sm text-muted-foreground ml-1">
                             {block.list.map((item, j) => (
-                                <li key={j} className="leading-relaxed">
-                                    {item}
-                                </li>
+                                <li key={j} className="leading-relaxed">{item}</li>
                             ))}
                         </ul>
                     )}
@@ -238,9 +248,7 @@ function DesktopSection({ section, index }) {
                 <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-muted text-xs font-mono font-semibold text-muted-foreground">
                     {String(index + 1).padStart(2, "0")}
                 </span>
-                <h2 className="text-xl font-semibold tracking-tight">
-                    {section.title}
-                </h2>
+                <h2 className="text-xl font-semibold tracking-tight">{section.title}</h2>
             </div>
             <div className="space-y-4 pl-11">
                 {section.content.map((block, i) => (
@@ -272,7 +280,7 @@ function DesktopSection({ section, index }) {
     );
 }
 
-export default function Privacy() {
+export default function Terms() {
     const [activeId, setActiveId] = useState(sections[0].id);
     const observerRef = useRef(null);
 
@@ -297,7 +305,7 @@ export default function Privacy() {
         <div className="min-h-screen">
             {/* ─── MOBILE ─── */}
             <div className="lg:hidden">
-                <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8">
+                <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-8">
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -313,11 +321,11 @@ export default function Privacy() {
 
                         <div className="flex items-start gap-4 mb-8">
                             <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/10 flex-shrink-0">
-                                <Shield className="h-6 w-6 text-primary" />
+                                <FileText className="h-6 w-6 text-primary" />
                             </div>
                             <div>
                                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                                    Privacy Policy
+                                    Terms of Service
                                 </h1>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     Last updated: {LAST_UPDATED}
@@ -327,12 +335,10 @@ export default function Privacy() {
 
                         <div className="rounded-xl border border-border/50 bg-card p-4 sm:p-5 mb-8">
                             <p className="text-sm sm:text-[15px] text-muted-foreground leading-relaxed">
-                                At JustScroll, we take your privacy seriously. This Privacy
-                                Policy explains how we collect, use, disclose, and safeguard
-                                your information when you use our manga reading platform.
-                                Please read this policy carefully. By using JustScroll, you
-                                agree to the collection and use of information in accordance
-                                with this policy.
+                                Welcome to JustScroll. These Terms of Service govern your
+                                access to and use of the JustScroll platform. By using our
+                                Service, you agree to comply with and be bound by these terms.
+                                Please read them carefully before using JustScroll.
                             </p>
                         </div>
 
@@ -347,9 +353,8 @@ export default function Privacy() {
 
             {/* ─── DESKTOP ─── */}
             <div className="hidden lg:block">
-                {/* Header */}
                 <div className="border-b border-border/50">
-                    <div className="mx-auto max-w-7xl px-8 py-14">
+                    <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-14">
                         <motion.div
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -365,11 +370,11 @@ export default function Privacy() {
 
                             <div className="flex items-start gap-4">
                                 <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/10 flex-shrink-0">
-                                    <Shield className="h-5 w-5 text-primary" />
+                                    <FileText className="h-5 w-5 text-primary" />
                                 </div>
                                 <div>
                                     <h1 className="text-4xl font-bold tracking-tight">
-                                        Privacy Policy
+                                        Terms of Service
                                     </h1>
                                     <div className="flex items-center gap-3 mt-2 text-sm text-muted-foreground">
                                         <span>Last updated: {LAST_UPDATED}</span>
@@ -380,19 +385,17 @@ export default function Privacy() {
                             </div>
 
                             <p className="mt-6 max-w-3xl text-[15px] text-muted-foreground leading-[1.75]">
-                                This Privacy Policy describes how JustScroll collects, uses,
-                                and protects your personal information when you use our manga
-                                reading platform. We are committed to safeguarding your privacy
-                                and being transparent about our data practices.
+                                These Terms of Service constitute a legally binding agreement
+                                between you and JustScroll governing your access to and use of
+                                the platform. Please read these terms carefully before using our
+                                Service.
                             </p>
                         </motion.div>
                     </div>
                 </div>
 
-                {/* Content with sidebar */}
-                <div className="mx-auto max-w-7xl px-8 py-12">
+                <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-12">
                     <div className="grid grid-cols-12 gap-12">
-                        {/* Sidebar */}
                         <aside className="col-span-3">
                             <div className="sticky top-20">
                                 <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-3 px-3">
@@ -401,8 +404,8 @@ export default function Privacy() {
                                 <TableOfContents activeId={activeId} />
                                 <div className="mt-6 mx-3 pt-6 border-t border-border/40">
                                     <div className="flex flex-col gap-2 text-[13px]">
-                                        <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                                            Terms of Service →
+                                        <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                                            Privacy Policy →
                                         </Link>
                                         <Link to="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
                                             Cookie Policy →
@@ -412,7 +415,6 @@ export default function Privacy() {
                             </div>
                         </aside>
 
-                        {/* Main */}
                         <motion.div
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -428,8 +430,8 @@ export default function Privacy() {
                                     © {new Date().getFullYear()} JustScroll. All rights reserved.
                                 </p>
                                 <div className="flex items-center gap-4 text-xs">
-                                    <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                                        Terms of Service
+                                    <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                                        Privacy Policy
                                     </Link>
                                     <Link to="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
                                         Cookie Policy

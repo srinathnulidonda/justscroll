@@ -21,7 +21,7 @@ export default function History() {
 
     if (!isAuthenticated) {
         return (
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10">
                 <EmptyState
                     icon={Clock}
                     title="Sign in to view history"
@@ -36,7 +36,7 @@ export default function History() {
     const history = data?.data || [];
 
     return (
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10 space-y-6">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10 space-y-6">
             <div>
                 <h1 className="text-2xl md:text-3xl font-bold">Reading History</h1>
                 <p className="text-muted-foreground text-sm mt-1">

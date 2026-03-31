@@ -41,7 +41,7 @@ function DetailSkeleton() {
     return (
         <div className="animate-pulse">
             <div className="relative h-44 sm:h-64 md:h-72 lg:h-80 bg-muted" />
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
                 <div className="relative -mt-16 sm:-mt-24 md:-mt-28 flex flex-col sm:flex-row gap-4 sm:gap-8 lg:gap-10">
                     <div className="w-28 sm:w-48 md:w-56 lg:w-64 aspect-[2/3] rounded-xl bg-muted/80 border-4 border-background flex-shrink-0 mx-auto sm:mx-0" />
                     <div className="flex-1 pt-1 sm:pt-8 space-y-4">
@@ -288,7 +288,7 @@ export default function MangaDetail() {
 
     if (error || !manga) {
         return (
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-12">
                 <EmptyState
                     icon={AlertCircle}
                     title="Manga not found"
@@ -346,7 +346,7 @@ export default function MangaDetail() {
                 {/* ── Hero Section ── */}
                 <HeroBanner coverUrl={manga.cover_url}>
                     {/* Top bar */}
-                    <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 lg:pt-5 pb-1">
+                    <div className="mx-auto max-w-site px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 lg:pt-5 pb-1">
                         <div className="flex items-center justify-between">
                             <button
                                 onClick={() => navigate(-1)}
@@ -385,7 +385,7 @@ export default function MangaDetail() {
                     </div>
 
                     {/* Cover + Title */}
-                    <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pb-5 sm:pb-6 lg:pb-8 pt-3 sm:pt-4 lg:pt-6">
+                    <div className="mx-auto max-w-site px-3 sm:px-6 lg:px-8 pb-5 sm:pb-6 lg:pb-8 pt-3 sm:pt-4 lg:pt-6">
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 lg:gap-10 items-center sm:items-end">
                             {/* Cover */}
                             <motion.div
@@ -575,7 +575,7 @@ export default function MangaDetail() {
                 </HeroBanner>
 
                 {/* ── Main Content ── */}
-                <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-site px-3 sm:px-6 lg:px-8">
                     {/* Stats */}
                     {stats.length > 0 && (
                         <motion.div

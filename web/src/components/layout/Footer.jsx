@@ -14,6 +14,10 @@ const footerLinks = {
         { label: "Bookmarks", to: "/bookmarks" },
         { label: "History", to: "/history" },
     ],
+    app: [  // ADD THIS NEW SECTION
+        { label: "Download Android App", to: "/download" },
+        { label: "GitHub", href: "https://github.com/srinathnulidonda/justscroll/releases/tag/v1.0.0", external: true },
+    ],
     legal: [
         { label: "Privacy Policy", to: "/privacy" },
         { label: "Terms of Service", to: "/terms" },
@@ -30,12 +34,23 @@ function FooterLinkGroup({ title, links }) {
             <ul className="space-y-2">
                 {links.map((link) => (
                     <li key={link.label}>
-                        <Link
-                            to={link.to}
-                            className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
-                        >
-                            {link.label}
-                        </Link>
+                        {link.external ? (
+                            <a
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                            >
+                                {link.label}
+                            </a>
+                        ) : (
+                            <Link
+                                to={link.to}
+                                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
+                            >
+                                {link.label}
+                            </Link>
+                        )}
                     </li>
                 ))}
             </ul>
@@ -48,10 +63,9 @@ export function Footer() {
 
     return (
         <footer className="border-t border-border/50 mt-auto bg-card/30 pb-12 md:pb-0">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                {/* Main footer */}
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
                 <div className="py-10 sm:py-12">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-8">
                         {/* Brand */}
                         <div className="col-span-2 sm:col-span-1">
                             <Link
@@ -74,22 +88,13 @@ export function Footer() {
                         </div>
 
                         {/* Links */}
-                        <FooterLinkGroup
-                            title="Browse"
-                            links={footerLinks.browse}
-                        />
-                        <FooterLinkGroup
-                            title="Account"
-                            links={footerLinks.account}
-                        />
-                        <FooterLinkGroup
-                            title="Legal"
-                            links={footerLinks.legal}
-                        />
+                        <FooterLinkGroup title="Browse" links={footerLinks.browse} />
+                        <FooterLinkGroup title="Account" links={footerLinks.account} />
+                        <FooterLinkGroup title="App" links={footerLinks.app} />
+                        <FooterLinkGroup title="Legal" links={footerLinks.legal} />
                     </div>
                 </div>
 
-                {/* Bottom bar */}
                 <div className="border-t border-border/40 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <p className="text-xs text-muted-foreground/60">
                         © {year} JustScroll. All rights reserved.

@@ -281,7 +281,7 @@ export default function Cookies() {
         <div className="min-h-screen">
             {/* ─── MOBILE ─── */}
             <div className="lg:hidden">
-                <div className="mx-auto max-w-3xl px-4 sm:px-6 py-8">
+                <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-8">
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -405,7 +405,7 @@ export default function Cookies() {
             {/* ─── DESKTOP ─── */}
             <div className="hidden lg:block">
                 <div className="border-b border-border/50">
-                    <div className="mx-auto max-w-7xl px-8 py-14">
+                    <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-14">
                         <motion.div
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -440,7 +440,7 @@ export default function Cookies() {
                     </div>
                 </div>
 
-                <div className="mx-auto max-w-7xl px-8 py-12">
+                <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-12">
                     <div className="grid grid-cols-12 gap-12">
                         <aside className="col-span-3">
                             <div className="sticky top-20">

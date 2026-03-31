@@ -50,12 +50,7 @@ const TABS = [
 
 function DiscoverToolbar({ activeTab, onTabChange }) {
     return (
-        <div
-            className={cn(
-                "sticky top-14 z-30",
-                "py-3 sm:py-4"
-            )}
-        >
+        <div className={cn("sticky top-14 z-30", "py-3 sm:py-4")}>
             <div className="flex justify-center px-4">
                 <nav
                     className={cn(
@@ -75,7 +70,6 @@ function DiscoverToolbar({ activeTab, onTabChange }) {
                         {TABS.map((tab) => {
                             const isActive = activeTab === tab.key;
                             const Icon = tab.icon;
-
                             return (
                                 <motion.button
                                     key={tab.key}
@@ -110,7 +104,6 @@ function DiscoverToolbar({ activeTab, onTabChange }) {
                                             }}
                                         />
                                     )}
-
                                     <Icon
                                         className={cn(
                                             "relative z-10 h-[18px] w-[18px]",
@@ -118,7 +111,6 @@ function DiscoverToolbar({ activeTab, onTabChange }) {
                                         )}
                                         strokeWidth={isActive ? 2.3 : 1.8}
                                     />
-
                                     <span
                                         className={cn(
                                             "relative z-10",
@@ -180,8 +172,7 @@ export default function Discover() {
                 onTabChange={handleTabChange}
             />
 
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 md:py-6 space-y-6">
-                {/* Section Header */}
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-4 md:py-6 space-y-6">
                 <motion.div
                     key={activeTab}
                     initial={{ opacity: 0, y: 6 }}
@@ -201,7 +192,6 @@ export default function Discover() {
                     </p>
                 </motion.div>
 
-                {/* Results count */}
                 {!isLoading && uniqueData.length > 0 && (
                     <div className="flex items-center justify-center sm:justify-start gap-3">
                         <p className="text-sm text-muted-foreground">
@@ -221,7 +211,6 @@ export default function Discover() {
                     </div>
                 )}
 
-                {/* Grid */}
                 <MangaGrid
                     manga={uniqueData}
                     loading={isLoading}
@@ -233,7 +222,6 @@ export default function Discover() {
                     emptyDescription="Check back later for new titles"
                 />
 
-                {/* Pagination */}
                 {totalPages > 1 && !isLoading && (
                     <div className="flex items-center justify-center gap-1 mt-10">
                         <Button

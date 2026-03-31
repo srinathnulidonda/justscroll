@@ -1,4 +1,4 @@
-// frontend/src/pages/NotFound.jsx
+// frontend/src/pages/misc/NotFound.jsx
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Home, ArrowLeft } from "lucide-react";

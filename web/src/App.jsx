@@ -31,12 +31,13 @@ const History = lazy(() => import("@/pages/user/History"));
 const Profile = lazy(() => import("@/pages/user/Profile"));
 
 // Legal Pages
-const PrivacyPolicy = lazy(() => import("@/pages/Privacy"));
-const TermsOfService = lazy(() => import("@/pages/Terms"));
-const CookiePolicy = lazy(() => import("@/pages/Cookies"));
+const PrivacyPolicy = lazy(() => import("@/pages/legal/Privacy"));
+const TermsOfService = lazy(() => import("@/pages/legal/Terms"));
+const CookiePolicy = lazy(() => import("@/pages/legal/Cookies"));
 
-// Other
-const NotFound = lazy(() => import("@/pages/NotFound"));
+// Misc Pages
+const Download = lazy(() => import("@/pages/misc/Download"));
+const NotFound = lazy(() => import("@/pages/misc/NotFound"));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -55,9 +56,7 @@ function PageLoader() {
         <div className="flex items-center justify-center min-h-[50vh]">
             <div className="flex flex-col items-center gap-3">
                 <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-                <span className="text-sm text-muted-foreground">
-                    Loading…
-                </span>
+                <span className="text-sm text-muted-foreground">Loading…</span>
             </div>
         </div>
     );
@@ -75,14 +74,10 @@ function ProtectedRoute({ children }) {
     const { isAuthenticated, isLoading } = useAuthStore();
     const location = useLocation();
 
-    if (isLoading) {
-        return <PageLoader />;
-    }
-
+    if (isLoading) return <PageLoader />;
     if (!isAuthenticated) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
-
     return <>{children}</>;
 }
 
@@ -198,6 +193,16 @@ function AppRoutes() {
                     element={
                         <Suspense fallback={<PageLoader />}>
                             <CookiePolicy />
+                        </Suspense>
+                    }
+                />
+
+                {/* Download */}
+                <Route
+                    path="download"
+                    element={
+                        <Suspense fallback={<PageLoader />}>
+                            <Download />
                         </Suspense>
                     }
                 />

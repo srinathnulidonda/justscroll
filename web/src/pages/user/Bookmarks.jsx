@@ -34,7 +34,7 @@ export default function Bookmarks() {
 
     if (!isAuthenticated) {
         return (
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10">
                 <EmptyState
                     icon={Bookmark}
                     title="Sign in to view bookmarks"
@@ -49,7 +49,7 @@ export default function Bookmarks() {
     const bookmarks = data?.data || [];
 
     return (
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10 space-y-6">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10 space-y-6">
             <div>
                 <h1 className="text-2xl md:text-3xl font-bold">My Bookmarks</h1>
                 <p className="text-muted-foreground text-sm mt-1">
@@ -68,7 +68,7 @@ export default function Bookmarks() {
                     actionLabel="Browse Manga"
                 />
             ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 md:gap-6">
                     {bookmarks.map((bk, i) => (
                         <motion.div
                             key={bk.id}

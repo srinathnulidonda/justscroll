@@ -104,14 +104,12 @@
         display: none;
     }
 
-    /* Floating nav safe-area support */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
         .mobile-nav-safe {
             padding-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
         }
     }
 
-    /* Floating nav glassmorphism fallback for older browsers */
     @supports not (backdrop-filter: blur(24px)) {
         .glass-nav-fallback {
             background: hsl(var(--background) / 0.97) !important;
@@ -143,5 +141,22 @@
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    /* ── Responsive site-wide max-width ── */
+    .max-w-site {
+        max-width: 1600px;
+    }
+
+    @media (min-width: 1536px) {
+        .max-w-site {
+            max-width: 1800px;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        .max-w-site {
+            max-width: 2000px;
+        }
     }
 }

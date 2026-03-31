@@ -83,8 +83,7 @@ export function GenreToolbar({ activeGenre, onGenreChange }) {
                 "border-b border-border/40"
             )}
         >
-            <div className="mx-auto max-w-7xl relative">
-                {/* Left fade + arrow */}
+            <div className="mx-auto max-w-site relative">
                 {showLeftArrow && (
                     <button
                         onClick={() => scroll("left")}
@@ -101,13 +100,12 @@ export function GenreToolbar({ activeGenre, onGenreChange }) {
                     </button>
                 )}
 
-                {/* Scrollable genres */}
                 <div
                     ref={scrollRef}
                     className={cn(
                         "flex items-center",
                         "gap-1 sm:gap-1.5",
-                        "px-3 sm:px-4 md:px-6",
+                        "px-3 sm:px-4 md:px-6 lg:px-8",
                         "py-2 sm:py-2.5",
                         "overflow-x-auto scrollbar-none",
                         "-webkit-overflow-scrolling-touch"
@@ -144,7 +142,6 @@ export function GenreToolbar({ activeGenre, onGenreChange }) {
                     })}
                 </div>
 
-                {/* Right fade + arrow */}
                 {showRightArrow && (
                     <button
                         onClick={() => scroll("right")}

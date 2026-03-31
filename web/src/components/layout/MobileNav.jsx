@@ -47,21 +47,18 @@ export function MobileNav() {
     if (location.pathname.startsWith("/read")) return null;
 
     const isActive = (item) => {
-        // When on /login or /register, check where user came from
         if (
             location.pathname === "/login" ||
             location.pathname === "/register"
         ) {
             const fromPath = location.state?.from?.pathname;
             if (fromPath) {
-                // Highlight the tab that the user was trying to reach
                 return item.matchPaths.some(
                     (p) =>
                         p === fromPath ||
                         (p !== "/" && fromPath.startsWith(p))
                 );
             }
-            // No from state — highlight Account/Profile tab
             return item.key === "profile";
         }
 
@@ -80,12 +77,6 @@ export function MobileNav() {
         }
         const target =
             !isAuthenticated && item.guestTo ? item.guestTo : item.to;
-
-        // When guest clicks Account, pass no from state
-        if (!isAuthenticated && item.guestTo) {
-            navigate(target);
-            return;
-        }
 
         navigate(target);
     };
@@ -131,7 +122,7 @@ export function MobileNav() {
                                     }}
                                     className={cn(
                                         "relative flex flex-col items-center justify-center",
-                                        "w-14 py-1.5 rounded-xl",
+                                        "w-16 py-1.5 rounded-xl",
                                         "transition-colors duration-200",
                                         "outline-none",
                                         active
@@ -139,9 +130,7 @@ export function MobileNav() {
                                             : "text-muted-foreground"
                                     )}
                                     aria-label={label}
-                                    aria-current={
-                                        active ? "page" : undefined
-                                    }
+                                    aria-current={active ? "page" : undefined}
                                 >
                                     {active && (
                                         <motion.div

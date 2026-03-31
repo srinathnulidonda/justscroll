@@ -390,7 +390,6 @@ export default function Profile() {
         retry: 1,
     });
 
-    // Show loading while auth is initializing
     if (authLoading) {
         return (
             <div className="flex items-center justify-center min-h-[50vh]">
@@ -402,10 +401,9 @@ export default function Profile() {
         );
     }
 
-    // This shouldn't happen due to ProtectedRoute, but just in case
     if (!isAuthenticated || !user) {
         return (
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 md:py-12">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-8 md:py-12">
                 <EmptyState
                     icon={User}
                     title="Sign in to view your profile"
@@ -429,7 +427,7 @@ export default function Profile() {
     };
 
     return (
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-4 sm:py-6 lg:py-10">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-10">
             {/* Desktop Layout */}
             <div className="hidden lg:block">
                 <div className="grid grid-cols-12 gap-6">

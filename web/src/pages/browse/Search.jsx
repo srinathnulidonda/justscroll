@@ -81,7 +81,7 @@ export default function SearchPage() {
     /* ---------- No query: Search prompt ---------- */
     if (!query) {
         return (
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10">
                 <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center">
                     <div className="mb-6 rounded-2xl bg-muted p-5">
                         <SearchIcon className="h-10 w-10 text-muted-foreground/60" />
@@ -130,7 +130,7 @@ export default function SearchPage() {
 
     /* ---------- Has query: Search results ---------- */
     return (
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 md:py-10">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-6 md:py-10">
             {/* Header */}
             <div className="mb-8 space-y-3">
                 <h1 className="text-2xl md:text-3xl font-bold tracking-tight">

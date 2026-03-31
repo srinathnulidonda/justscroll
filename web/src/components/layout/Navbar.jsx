@@ -22,11 +22,10 @@ import {
     LogOut,
     Search,
     X,
+    Download,  // ADD THIS
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-
-// Import the logo image
 import logo from "@/assets/logo.png";
 
 export function Navbar() {
@@ -37,7 +36,6 @@ export function Navbar() {
     const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Hide on reader page
     if (location.pathname.startsWith("/read")) return null;
 
     const handleSearch = (e) => {
@@ -52,7 +50,7 @@ export function Navbar() {
 
     return (
         <header className="sticky top-0 z-40 w-full border-b border-border/50 bg-background/90 backdrop-blur-xl">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
                 <div className="flex h-14 items-center gap-4">
                     {/* Logo */}
                     <Link
@@ -69,7 +67,7 @@ export function Navbar() {
                     {/* Desktop Search Bar */}
                     <form
                         onSubmit={handleSearch}
-                        className="hidden md:flex flex-1 max-w-md mx-auto relative"
+                        className="hidden md:flex flex-1 max-w-lg mx-auto relative"
                     >
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                         <input
@@ -99,7 +97,6 @@ export function Navbar() {
                         )}
                     </form>
 
-                    {/* Spacer on mobile */}
                     <div className="flex-1 md:hidden" />
 
                     {/* Right Actions */}
@@ -121,6 +118,17 @@ export function Navbar() {
                                 <Search className="h-4 w-4" />
                             )}
                         </button>
+
+                        {/* ADD DOWNLOAD BUTTON (Desktop only) */}
+                        <SimpleTooltip content="Download App">
+                            <Link
+                                to="/download"
+                                className="hidden md:flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                                aria-label="Download app"
+                            >
+                                <Download className="h-4 w-4" />
+                            </Link>
+                        </SimpleTooltip>
 
                         {/* Theme Toggle */}
                         <SimpleTooltip
@@ -197,7 +205,6 @@ export function Navbar() {
                             </DropdownMenu>
                         ) : (
                             <>
-                                {/* Desktop: Show both Sign in and Sign up */}
                                 <div className="hidden sm:flex items-center gap-2 ml-1">
                                     <Button
                                         variant="ghost"
@@ -215,8 +222,6 @@ export function Navbar() {
                                         Sign up
                                     </Button>
                                 </div>
-
-                                {/* Mobile: Only show user icon that leads to login */}
                                 <button
                                     onClick={() => navigate("/login")}
                                     className="flex sm:hidden h-9 w-9 items-center justify-center rounded-full bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors ml-1"

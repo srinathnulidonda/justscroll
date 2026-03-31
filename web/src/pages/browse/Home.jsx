@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "@/lib/api";
 import { MangaGrid } from "@/components/manga/MangaGrid";
 import { GenreToolbar } from "@/components/common/GenreToolbar";
+import { DownloadBanner } from "@/components/common/DownloadBanner";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -92,15 +93,15 @@ export default function Home() {
 
     return (
         <div>
-            {/* Sticky Genre Toolbar */}
             <GenreToolbar
                 activeGenre={activeGenre}
                 onGenreChange={setActiveGenre}
             />
 
-            {/* Content */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 sm:py-6 md:py-8 space-y-6 sm:space-y-8 md:space-y-12">
-                {/* Active filter indicator */}
+            <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 space-y-6 sm:space-y-8 md:space-y-12">
+                {/* Mobile Download Banner */}
+                <DownloadBanner />
+
                 {isFiltered && (
                     <div className="flex items-center justify-between gap-2">
                         <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
@@ -133,7 +134,6 @@ export default function Home() {
                     </div>
                 )}
 
-                {/* No results */}
                 {isFiltered &&
                     !loadingPopular &&
                     !loadingLatest &&
@@ -155,7 +155,6 @@ export default function Home() {
                         </div>
                     )}
 
-                {/* Popular Section */}
                 {(filteredPopular.length > 0 ||
                     loadingPopular ||
                     !isFiltered) && (
@@ -168,9 +167,7 @@ export default function Home() {
                                     onClick={() => navigate("/discover")}
                                     className="gap-1 text-xs sm:text-sm text-muted-foreground hover:text-foreground"
                                 >
-                                    <span className="hidden xs:inline">
-                                        View all
-                                    </span>
+                                    <span className="hidden xs:inline">View all</span>
                                     <span className="xs:hidden">All</span>
                                     <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                                 </Button>
@@ -189,7 +186,6 @@ export default function Home() {
                         </Section>
                     )}
 
-                {/* Latest Updates Section */}
                 {(filteredLatest.length > 0 ||
                     loadingLatest ||
                     !isFiltered) && (
@@ -199,14 +195,10 @@ export default function Home() {
                                 <Button
                                     variant="ghost"
                                     size="sm"
-                                    onClick={() =>
-                                        navigate("/discover?tab=latest")
-                                    }
+                                    onClick={() => navigate("/discover?tab=latest")}
                                     className="gap-1 text-xs sm:text-sm text-muted-foreground hover:text-foreground"
                                 >
-                                    <span className="hidden xs:inline">
-                                        View all
-                                    </span>
+                                    <span className="hidden xs:inline">View all</span>
                                     <span className="xs:hidden">All</span>
                                     <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                                 </Button>
